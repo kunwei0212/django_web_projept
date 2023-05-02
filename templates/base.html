@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宇宙小船{% block title %}{% endblock %}</title>
+
+    {% block style %}
+    {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+
+
+
+</head>
+
+<body>
+    <script>
+        //取cookies     
+        function getCookie(name) {
+            let arr = document.cookie.match(name);
+            if (arr != null) return unescape(arr[2]);
+            return null;
+        }
+        //刪除cookie
+        function delCookie(name) {
+            var exp = new Date();
+            exp.setTime(exp.getTime() - 1);
+            var cval = getCookie(name);
+            if (cval != null)
+                document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/";
+            window.location = "../"
+        }
+    </script>
+    <div id="上半"></div>
+    <din id="下半"></din>
+    <div id=basebox1>
+        <div id="starsbox" style="width:100%;height:100%;position:absolute;">
+            <div id="stars" style="overflow: hidden;"></div>
+            <div id="stars2" style="overflow: hidden;"></div>
+            <div id="stars3" style="overflow: hidden;"></div>
+        </div>
+
+        <div id="top" class="relative">
+            {% if login != True %}
+            {% else %}
+            <div id=logoutbox class="absolute">
+                <button id="logout" onclick='delCookie("login")'>結束航行</button>
+            </div>
+            {% endif %}
+            <div id="title"><span></span></div>
+        </div>
+
+        <div id="basebox2" class="absolute">
+            <div id="中" class="absolute">
+                {% block body%}
+                {% endblock %}
+            </div>
+            <div id="左" class="absolute">
+                <p class="規則標題">這是哪裡?</ㄣ>
+                <p class="規則">
+                    這是一艘航行在宇宙中的小船，不知要航向何方</p>
+                <p class="規則標題">我能做什麼?</ㄣ>
+                <p class="規則">
+                    看看你身旁的紙筆，你可以寫下一段話丟入宇宙中，它會漂到某個也流浪在這片宇宙的朋友手中</p>
+                    <p class="規則標題">我忘記密碼了!</ㄣ>
+                <p class="規則">
+                    那你就重新註冊吧，不要再忘了喔</p>
+            </div>
+
+            <div id="右" class="absolute"></div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

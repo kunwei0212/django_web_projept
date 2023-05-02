@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block style %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static "css/loginandsignupyes.css" %}">
+{% endblock %}
+
+
+{% block body%}
+<!--先編寫好網頁佈局-->
+<div id="container">
+    <h2>註冊成功</h2>
+    <h3 id="time1">5</h3><h3>秒後見</h3>
+
+</div>
+
+<script type="text/javascript">
+    //獲取顯示秒數的元素，通過定時器來更改秒數。
+    var num = 3;
+    function downTime() {
+        document.getElementById('time1').innerHTML=num;
+        if (num > 0) {
+            num--;
+        } else {
+            window.location = "../";
+        }
+        setTimeout("downTime()", 1000);
+    }
+    //通過window的location和history物件來控制網頁的跳轉。
+    downTime();
+</script>
+
+{% endblock %}

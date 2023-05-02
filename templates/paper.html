@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block style %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static "css/paper.css" %}">
+
+{% endblock %}
+
+
+{% block body%}
+<script type="text/javascript">
+    function getData() {
+        var req = new XMLHttpRequest();
+        req.open('get', "/message/api/");
+        req.onload = function () {
+            document.getElementById('內容').innerHTML=this.responseText
+        };
+        req.send();
+    }
+
+
+</script>
+
+<div id="paperbox1" class="relative">
+    <div id="paperbox2" class="relative">
+        <div id="container" class="relative">
+            <div id="內容盒子">
+                <p id="內容">你好，旅行者:
+                    今天過得還好嗎？
+                    不管外界如何評價你，都請讓自己成為更好的人
+                    寫下那些你想跟跟別人說的，不敢跟別人說的
+                    放心，沒人知道你是誰
+                by餅乾</p>
+            </div>
+            <div class="button" class="absolute">
+                <button id="nextmessage" class="按鈕" onclick="getData()">另一個漂流瓶</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div id="messagebox" class="relative">
+        <div id="messagebox2" class="relative">
+            <form id="messageform" action="/" method="POST">{% csrf_token %}
+                <textarea type="text" id="message" name="message" >嗨!朋友:</textarea>
+            </form>
+        </div>
+        <div class="button" class="absolute">
+            <button class="按鈕" form="messageform">送 出</button>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

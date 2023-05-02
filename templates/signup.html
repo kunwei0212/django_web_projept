@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block style %}
+
+{% load static %}
+        <link rel="stylesheet" href= "{% static "css/signup.css" %}">
+{% endblock %}
+
+
+{% block body%} 
+
+        <div id="container">
+
+
+
+                <h3>註冊</h3>
+
+                <form action="../signup/" method="post">{%csrf_token%}
+                    <div class="tab"></div>
+                    <input type="text" id="username" name="username" placeholder="帳號" required maxlength="20" value={{ username }}>
+                    <p class="error">{{ usererror.username }}</p>
+                    <div class="tab"></div>
+                    <input type="text" id="password" name="password" placeholder="密碼" required maxlength="20" minlength="5">
+                    <p class="error">{{ usererror.password }}</p>
+                    <div class="tab"></div>
+                    <input type="text" id="comfirm_password" name="comfirm_password" placeholder="確認密碼" required maxlength="20" minlength="5">
+                    <p class="error">{{ usererror.conmfirm_password }}</p>
+                    <div class="tab"></div>
+                    <input type="submit" value="註冊" class="submit">
+                </form>
+                <a href="../">已有帳號?登入</a>  
+ 
+
+
+        </div><!-- container2 end-->
+
+
+        {% endblock %}

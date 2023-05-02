@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block style %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static "css/login.css" %}">
+{% endblock %}
+
+
+{% block body%}
+<div class="system_name">
+
+</div>
+<div id="container">
+  <div class="login">
+    <h3>登入</h3>
+    <form action="/" method="POST">{% csrf_token %}
+      <input type="text" id="username" name="username" placeholder="帳號" required value={% if username != None %} {{ username }}{% endif %}>
+      <p class="error">{{ usernameerror }}</p>
+      <div class="tab"></div>
+      <input type="password" id="password" name="password" placeholder="密碼" required>
+      <p class="error">{{ passworderror }}</p>
+      <div class="tab"></div>
+      <input type="submit" value="登入" class="submit"></a>
+  </div>
+  </form>
+  <a href="signup/">還沒有帳號?註冊</a>
+</div>
+{% endblock %}
